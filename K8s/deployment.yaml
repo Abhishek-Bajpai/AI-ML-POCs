@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-image-recognition-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-image-recognition
+  template:
+    metadata:
+      labels:
+        app: ai-image-recognition
+    spec:
+      containers:
+      - name: ai-image-recognition
+        image: abhirajbajpai/ai_image_recognition
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - name: data-volume
+          mountPath: /app/data
+      volumes:
+      - name: data-volume
+        hostPath:
+          path: C:\CloudEngineeringPOCs\AI-ML-Edureka\AIML_POCs\CNN_ImageIDed\data
