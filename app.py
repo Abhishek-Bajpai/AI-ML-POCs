@@ -1,6 +1,6 @@
 #Author : Abhishek Bajpai (abhishek.bajpai.ca@gmail.com)
 import os
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, request, render_template, send_from_directory, jsonify
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import numpy as np
@@ -21,6 +21,12 @@ def load_and_predict(image_path):
     prediction = model.predict(img_array)
     return prediction
 
+@app.route('/read_files')
+def read_files():
+    directory_path = "/app/data"
+    files = os.listdir(directory_path)
+    return jsonify(files)
+
 # Route for serving uploaded images
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -29,6 +35,7 @@ def uploaded_file(filename):
 # Route for the homepage
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
+    directory_path = "/app/data/training/animals"    
     if request.method == 'POST':
         # Check if a file was uploaded
         if 'file' not in request.files:
@@ -51,8 +58,7 @@ def upload_file():
             # class_indices = {0: 'Class 1', 1: 'Class 2', 2: 'Class 3'}  # Define your class labels
             # predicted_class = class_indices[np.argmax(prediction)]
             #class_labels = sorted(os.listdir("../data/training/people"))
-            class_labels = sorted(os.listdir("data/training/animals"))  
-#C:\CloudEngineeringPOCs\AI-ML-Edureka\AIML_POCs\CNN_ImageIDed\data
+            class_labels = sorted(os.listdir(directory_path))  
             print(f'Class Labels Length : {len(class_labels)}')          
             predicted_class_index = np.argmax(prediction)
             print(f'Predicted Class Index : {type(predicted_class_index)} :  {predicted_class_index}')
@@ -63,4 +69,4 @@ def upload_file():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5000)

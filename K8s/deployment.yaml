@@ -14,13 +14,15 @@ spec:
     spec:
       containers:
       - name: ai-image-recognition
-        image: abhirajbajpai/ai_image_recognition
+        image: abhirajbajpai/ai_image_recognition:v2
         ports:
         - containerPort: 5000
         volumeMounts:
         - name: data-volume
           mountPath: /app/data
+          readOnly: false  # Specify the access mode here, either true or false
+
       volumes:
       - name: data-volume
-        hostPath:
-          path: C:\CloudEngineeringPOCs\AI-ML-Edureka\AIML_POCs\CNN_ImageIDed\data
+        persistentVolumeClaim:
+          claimName: my-pvc
