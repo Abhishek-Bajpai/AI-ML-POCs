@@ -8,7 +8,8 @@ import numpy as np
 app = Flask(__name__)
 
 # Load the trained model
-model = load_model("C:/CloudEngineeringPOCs/AI-ML-Edureka/AIML_POCs/CNN_ImageIDed/AI_ImageDetection_POC/trained_models/abeer_amiya_animals_classifier_model-v1.keras") #, custom_objects=custom_objects)  # Change to your model file path
+print(f'Current Working Directory is : {os.getcwd()}')
+model = load_model("trained_models/abeer_amiya_animals_classifier_model-v1.keras") #, custom_objects=custom_objects)  # Change to your model file path
 #C:\CloudEngineeringPOCs\AI-ML-Edureka\AIML_POCs\CNN_ImageIDed\AI_ImageDetection_POC\trained_models\animals_model-v1.keras
 #C:\CloudEngineeringPOCs\AI-ML-Edureka\AIML_POCs\CNN_ImageIDed\AI_ImageDetection_POC\trained_models\abeer_amiya_animals_classifier_model-v1.keras
 # Function to preprocess and predict on the uploaded image
@@ -50,8 +51,8 @@ def upload_file():
             # class_indices = {0: 'Class 1', 1: 'Class 2', 2: 'Class 3'}  # Define your class labels
             # predicted_class = class_indices[np.argmax(prediction)]
             #class_labels = sorted(os.listdir("../data/training/people"))
-            class_labels = sorted(os.listdir("C:/CloudEngineeringPOCs/AI-ML-Edureka/AIML_POCs/CNN_ImageIDed/data/training/animals"))  
-
+            class_labels = sorted(os.listdir("data/training/animals"))  
+#C:\CloudEngineeringPOCs\AI-ML-Edureka\AIML_POCs\CNN_ImageIDed\data
             print(f'Class Labels Length : {len(class_labels)}')          
             predicted_class_index = np.argmax(prediction)
             print(f'Predicted Class Index : {type(predicted_class_index)} :  {predicted_class_index}')
