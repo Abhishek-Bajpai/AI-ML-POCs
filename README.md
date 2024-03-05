@@ -1,3 +1,7 @@
-# This is a working AI & ML test program which uses CNN and tensors to identify type of an animal or a person. 
-# This model has been trained on about 90 different types of random animals (60 images each) and 2 people's about 240 images combined
-# this is kind of a miniscule training data so dont expect too much. As more and more data gets available to the program, smarter it gets
+# Image build -> 
+docker build -t abhirajbajpai/ai-imagerecognition-app .
+# Run container ->  Here my data folder is mapped as volume while spinning container.. thats where my training and test data is located..outside container env
+docker run -p 5000:5000 -v ImageIdentification-CNN_POC\data:/app/data abhirajbajpai/ai-imagerecognition-app
+
+# My app.py is fetching the labels from mapped directory like so... mapped volumn is accessible as softlink from WORKDIR
+class_labels = sorted(os.listdir("/app/data/training/people"))        

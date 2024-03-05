@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload an animal image and check what kind of animal is this </title>
+</head>
+<body bgcolor="cyan">
+    <h1>Identify Person or Animal in the picture<br/>Upload an image (v1 - abeer_amiya_classifier_model.keras (Abeer, Amiya or Together))</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Upload & See Prediction</button>
+    </form>
+    {% if message %}
+    <h1><p>{{ message }}</p></h1>
+    <h2><br/>Caution: <br/>The Animal model is being trained and data is very limited right now.<br/><br/>Wait for next generation model for better predictions</h2>
+    {% endif %}
+    {% if image_file %}
+    <img src="{{ image_file }}" alt="Uploaded Image" style="max-width: 500px;">
+    {% endif %}
+</body>
+</html>
