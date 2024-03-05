@@ -63,6 +63,5 @@ history = model.fit(train_generator, epochs=epochs)
 # Save the trained model
 #model.save("AI-Projects\image-classification\animal_classifier_model.h5")
 # Save the trained model using the native Keras format
-model.save("trained_models/animals_model-v1.keras")
-
+model.save("trained_models/abeer_amiya_animals_classifier_model-v1.keras")
 print("Model training completed and saved.")
