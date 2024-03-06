@@ -1,0 +1,37 @@
+# Define configurable values for your Helm chart
+
+image:
+  repository: abhirajbajpai/ai_image_recognition  # Docker image repository
+  tag: v2  # Docker image tag
+
+service:
+  type: NodePort
+  port: 5000
+
+serviceAccount:
+  create: true
+
+ingress:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+# Define resources for your deployment
+resources:
+  requests:
+    cpu: "100m"  # CPU request
+    memory: "128Mi"  # Memory request
+  limits:
+    cpu: "200m"  # CPU limit
+    memory: "256Mi"  # Memory limit
+
+# Define persistent volume claim settings
+persistence:
+  enabled: true  # Enable/disable persistence
+  size: 2Gi  # Size of the volume claim
+
+# Define NFS settings for the persistent volume
+nfs:
+  server: 192.168.1.53  # NFS server IP address
+  path: "data"  # Path to the directory on NFS server

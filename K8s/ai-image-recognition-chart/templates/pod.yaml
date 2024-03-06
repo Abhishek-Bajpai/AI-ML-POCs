@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: abhirajbajpai/ai_image_recognition:v2
+    volumeMounts:
+    - name: my-volume
+      mountPath: /app/data
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: my-pvc

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "helmchart_ai-image-recognition.fullname" . }}
+  labels:
+    {{- include "helmchart_ai-image-recognition.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "helmchart_ai-image-recognition.selectorLabels" . | nindent 4 }}

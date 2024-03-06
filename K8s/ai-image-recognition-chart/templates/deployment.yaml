@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-image-recognition-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-image-recognition
+  template:
+    metadata:
+      labels:
+        app: ai-image-recognition
+    spec:
+      containers:
+      - name: ai-image-recognition
+        image: abhirajbajpai/ai_image_recognition:v2
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - name: data-volume
+          mountPath: /app/data
+          readOnly: false  # Specify the access mode here, either true or false
+
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: my-pvc
