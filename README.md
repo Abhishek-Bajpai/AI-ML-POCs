@@ -4,7 +4,7 @@ docker build -t abhirajbajpai/ai_image_recognition .
 docker push abhirajbajpai/ai_image_recognition
 
 #Run container ->  Here my data folder is mapped as volume while spinning container.. thats where my training and test data is located..outside container env
-docker run -p 5000:5000 -v C:\CloudEngineeringPOCs\AI-ML-Edureka\AIML_POCs\CNN_ImageIDed\data:/app/data abhirajbajpai/ai_image_recognition:v1
+docker run -p 5000:5000 -v AIML_POCs\CNN_ImageIDed\data:/app/data abhirajbajpai/ai_image_recognition:v1
 
 # AIML_POCs\ImageIdentification-CNN_POC\data
 #My app.py is fetching the labels from mapped directory like so... mapped volumn is accessible from WORKDIR
