@@ -9,5 +9,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   nfs:
-    path: "C:/CloudEngineeringPOCs/AI-ML-Edureka/AIML_POCs/CNN_ImageIDed/data"
+    path: "/data"
     server: 192.168.1.53
